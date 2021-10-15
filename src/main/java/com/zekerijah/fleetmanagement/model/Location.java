@@ -20,8 +20,8 @@ public class Location {
     @Column(name="id")
     private Integer id;
 
-    private String description;
-    private String details;
+    private String city;
+    private String address;
 
     @ManyToOne
     @JoinColumn(name="countryid", insertable=false, updatable=false)
@@ -33,6 +33,4 @@ public class Location {
     private Region region;
     private Integer regionid;
 
-    private String city;
-    private String address;
 }
