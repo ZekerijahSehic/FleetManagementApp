@@ -1,6 +1,6 @@
 $('document').ready(function() {
 
-    $('table #editButton').on('click', function (event) {
+    $('#editButton').on('click', function (event) {
         event.preventDefault();
 
         var href = $(this).attr('href');
@@ -15,4 +15,12 @@ $('document').ready(function() {
         });
         $('#editCountryModal').modal();
     })
+
+    $('table #deleteButton').on('click', function (event) {
+        event.preventDefault();
+        var href=$(this).attr('href')
+        $('#confirmDeleteButton').attr('href', href)
+        $('#deleteCountryModal').modal()
+    })
+
 })
