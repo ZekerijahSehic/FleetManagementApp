@@ -9,7 +9,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>States</title>
+    <title>Regions</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -450,7 +450,7 @@
 </section>
 <!-- container section end -->
 
-<!-- add country modal start -->
+<!-- add region modal start -->
 <div class="modal fade" id="addRegionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -487,9 +487,9 @@
         </div>
     </div>
 </div>
-<!-- add country modal end -->
+<!-- add region modal end -->
 
-<!-- details country modal start -->
+<!-- details region modal start -->
 <div class="modal fade" id="detailsRegionModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <form>
         <div class="modal-dialog" role="document">
@@ -517,7 +517,7 @@
                     </div>
                     <div class="form-group">
                         <label for="codeDetails" class="col-form-label">Name:</label>
-                        <input type="text" class="form-control" id="codeDetails" name="name" readonly>
+                        <input type="text" class="form-control" id="nameDetails" name="name" readonly>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -527,9 +527,9 @@
         </div>
     </form>
 </div>
-<!-- details country modal start -->
+<!-- details region modal start -->
 
-<!-- edit country modal start -->
+<!-- edit region modal start -->
 <div class="modal fade" id="editRegionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -540,7 +540,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/regionss/update}" method="put">
+                <form th:action="@{/regions/update}" method="put">
                     <div class="form-group">
                         <label class="col-form-label">Id:</label>
                         <input type="text" class="form-control" id="idEdit" name="id" readonly>
@@ -570,9 +570,9 @@
         </div>
     </div>
 </div>
-<!-- edit country modal end -->
+<!-- edit region modal end -->
 
-<!-- delete country modal start -->
+<!-- delete region modal start -->
 <div class="modal" id="deleteRegionModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -592,7 +592,7 @@
         </div>
     </div>
 </div>
-<!-- delete country modal end -->
+<!-- delete region modal end -->
 
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
