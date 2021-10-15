@@ -11,7 +11,6 @@ $('document').ready(function() {
             $('#capitalEdit').val(country.capital);
             $('#codeEdit').val(country.code);
             $('#continentEdit').val(country.continent);
-            $('#nationalityEdit').val(country.nationality);
         });
         $('#editCountryModal').modal();
     })
@@ -21,6 +20,18 @@ $('document').ready(function() {
         var href=$(this).attr('href')
         $('#confirmDeleteButton').attr('href', href)
         $('#deleteCountryModal').modal()
+    })
+
+    $('#detailsButton').on('click', function (event){
+        event.preventDefault();
+        var href = $(this).attr('href');
+        $.get(href, function (country) {
+        $('#idDetails').val(country.id);
+        $('#codeDetails').val(country.code);
+        $('#capitalDetails').val(country.capital);
+        $('#continentDetails').val(country.continent);
+        })
+        $('#detailsCountryModal').modal();
     })
 
 })
