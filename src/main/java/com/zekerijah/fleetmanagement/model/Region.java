@@ -13,14 +13,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class State {
+public class Region {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
-    private String capital;
-    private String code;
 
     @ManyToOne
     @JoinColumn(name = "countryid", insertable = false, updatable = false)
@@ -28,5 +26,4 @@ public class State {
 
     private Integer countryid;
 
-    private String details;
 }
