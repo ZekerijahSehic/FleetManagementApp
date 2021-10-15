@@ -33,9 +33,9 @@ public class Person {
     private Integer countryid;
 
     @ManyToOne
-    @JoinColumn(name="stateid", insertable=false, updatable=false)
-    private State state;
-    private Integer stateid;
+    @JoinColumn(name="regionid", insertable=false, updatable=false)
+    private Region region;
+    private Integer regionid;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;

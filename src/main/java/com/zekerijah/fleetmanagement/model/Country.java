@@ -22,11 +22,10 @@ public class Country {
     private String code;
     private String capital;
     private String name;
-    private String nationality;
     private String continent;
 
     @OneToMany(mappedBy = "country")
-    private List<State> states;
+    private List<Region> regions;
 
 
 
