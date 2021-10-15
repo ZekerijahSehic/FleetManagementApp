@@ -1,7 +1,9 @@
 package com.zekerijah.fleetmanagement.controller;
 
+import com.zekerijah.fleetmanagement.model.Country;
 import com.zekerijah.fleetmanagement.model.Region;
-import com.zekerijah.fleetmanagement.service.StateService;
+import com.zekerijah.fleetmanagement.service.CountryService;
+import com.zekerijah.fleetmanagement.service.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,39 +13,46 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class StateController {
+public class RegionController {
 
     @Autowired
-    private StateService stateService;
+    private RegionService regionService;
 
-    @GetMapping("/states")
-    public String getStates(Model model){
-        List<Region> stateList = stateService.getStates();
-        model.addAttribute("states", stateList);
-        return "state";
+    @Autowired
+    private CountryService countryService;
+
+    @GetMapping("/regions")
+    public String getRegions(Model model){
+        List<Region> regionList = regionService.getRegions();
+        model.addAttribute("regions", regionList);
+
+        List<Country> countryList = countryService.getCountries();
+        model.addAttribute("countries", countryList);
+
+        return "region";
     }
 
-    @PostMapping("/states/add-new")
-    public String addState(Region state){
-        stateService.saveState(state);
-        return "redirect:/states";
+    @PostMapping("/regions/add-new")
+    public String addRegion(Region region){
+        regionService.saveRegion(region);
+        return "redirect:/regions";
     }
 
-    @RequestMapping("/states/find-by-id")
+    @RequestMapping("/regions/find-by-id")
     @ResponseBody
-    public Optional<Region> getState(Integer id){
-        return stateService.getStateById(id);
+    public Optional<Region> getRegion(Integer id){
+        return regionService.getRegionById(id);
     }
 
-    @RequestMapping(value = "/states/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String updateState(Region state) {
-        stateService.saveState(state);
-        return "redirect:/states";
+    @RequestMapping(value = "/regions/update", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String updateRegion(Region region) {
+        regionService.saveRegion(region);
+        return "redirect:/regions";
     }
 
-    @RequestMapping(value = "/states/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
-    public String deleteState(Integer id){
-        stateService.deleteStateById(id);
-        return "redirect:/states";
+    @RequestMapping(value = "/regions/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
+    public String deleteRegion(Integer id){
+        regionService.deleteRegionById(id);
+        return "redirect:/regions";
     }
 }
