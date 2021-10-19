@@ -29,22 +29,22 @@ public class VehicleModelController {
         return "redirect:/vehicles-models";
     }
 
-    @GetMapping("/vehicles-models/find-by-id")
+    @RequestMapping("/vehicles-models/find-by-id")
     @ResponseBody
     public Optional<VehicleModel> getVehicleModel(Integer id) {
         return vehicleModelService.getVehicleModelById(id);
     }
 
-    @RequestMapping(value = "/vehicles-models/update", method = {RequestMethod.GET, RequestMethod.PUT})
+    @RequestMapping(value = "/vehicles-models/update",  method = {RequestMethod.PUT, RequestMethod.GET})
     public String updateVehicleModel(VehicleModel vehicleModel) {
         vehicleModelService.saveVehicleModel(vehicleModel);
-        return "redirect:/vehicles-models/";
+        return "redirect:/vehicles-models";
     }
 
     @RequestMapping(value = "/vehicles-models/delete", method = {RequestMethod.GET, RequestMethod.DELETE})
     public String deleteVehicleModel(Integer id){
         vehicleModelService.deleteVehicleModelById(id);
-        return "redirect:/vehicles-models/";
+        return "redirect:/vehicles-models";
     }
 }
 

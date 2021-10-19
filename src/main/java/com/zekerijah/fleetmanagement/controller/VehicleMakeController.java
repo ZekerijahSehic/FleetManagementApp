@@ -29,7 +29,7 @@ public class VehicleMakeController {
         return "redirect:/vehicles-makes";
     }
 
-    @GetMapping("/vehicles-makes/find-by-id")
+    @RequestMapping("/vehicles-makes/find-by-id")
     @ResponseBody
     public Optional<VehicleMake> getVehicleMake(Integer id){
         return vehicleMakeService.getVehicleMakeById(id);

@@ -29,7 +29,7 @@ public class VehicleStatusController {
         return "redirect:/vehicles-statuses";
     }
 
-    @GetMapping("/vehicles-statuses/find-by-id")
+    @RequestMapping("/vehicles-statuses/find-by-id")
     @ResponseBody
     public Optional<VehicleStatus> getVehicleStatus(Integer id) {
         return vehicleStatusService.getVehicleStatusById(id);
