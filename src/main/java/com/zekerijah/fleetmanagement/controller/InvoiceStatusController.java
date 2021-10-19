@@ -1,14 +1,49 @@
 package com.zekerijah.fleetmanagement.controller;
 
+import com.zekerijah.fleetmanagement.model.InvoiceStatus;
+import com.zekerijah.fleetmanagement.service.InvoiceStatusService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class InvoiceStatusController {
 
+    @Autowired
+    private InvoiceStatusService invoiceStatusService;
+
     @GetMapping("/invoices-statuses")
     public String getInvoicesStatuses(Model model){
+        List<InvoiceStatus> invoiceStatusList = invoiceStatusService.getInvoicesStatuses();
+        model.addAttribute("invoicesStatuses", invoiceStatusList);
         return "invoice_status";
+    }
+
+    @PostMapping("/invoices-statuses/add-new")
+    public String addInvoiceStatus(InvoiceStatus invoiceStatus){
+        invoiceStatusService.saveInvoiceStatus(invoiceStatus);
+        return "redirect:/invoices-statuses";
+    }
+
+    @RequestMapping("/invoices-statuses/find-by-id")
+    @ResponseBody
+    public Optional<InvoiceStatus> getInvoiceStatus(Integer id){
+        return invoiceStatusService.getInvoiceStatusById(id);
+    }
+
+    @RequestMapping(value = "/invoices-statuses/update", method = {RequestMethod.GET, RequestMethod.POST})
+    public String updateInvoiceStatus(InvoiceStatus invoiceStatus){
+        invoiceStatusService.saveInvoiceStatus(invoiceStatus);
+        return "redirect:/invoices-statuses";
+    }
+
+    @RequestMapping(value = "/invoices-statuses/delete", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String deleteInvoiceStatus(Integer id){
+        invoiceStatusService.deleteInvoiceStatusById(id);
+        return "redirect:/invoices-statuses";
     }
 }
