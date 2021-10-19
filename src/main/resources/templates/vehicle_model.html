@@ -413,16 +413,171 @@
             <!-- page start-->
             <h1>List of Vehicles Models</h1>
 
+            <!-- add location start -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVehicleModelModal" >New Vehicle</button>
+            <!-- add location end -->
 
+            <!-- display location list start-->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Details</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="vehicleModel:${vehiclesModels}">
+                    <td th:text="${vehicleModel.id}"></td>
+                    <td th:text="${vehicleModel.description}"></td>
+                    <td th:text="${vehicleModel.details}"></td>
+                    <td>
+                        <div class="btn-group">
+                            <a th:href="@{/vehicles-models/find-by-id/(id=${vehicleModel.id})}" class="btn btn-primary" id="editButton"> <i class="icon_pencil-edit"> </i></a>
+                            <a th:href="@{/vehicles-models/find-by-id/(id=${vehicleModel.id})}" class="btn btn-success" id="detailsButton" > <i class="icon_document_alt"></i></a>
+                            <a th:href="@{/vehicles-models/delete/(id=${vehicleModel.id})}" class="btn btn-danger" id="deleteButton">  <i class="icon_close_alt2"> </i> </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- display location list  end-->
 
             <!-- page end-->
         </section>
     </section>
     <!--main content end-->
 
-
 </section>
 <!-- container section end -->
+
+<!-- add vehicleModel modal start -->
+<div class="modal fade" id="addVehicleModelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >New Vehicle Model</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/vehicles-models/add-new}" method="post">
+                    <div class="form-group">
+                        <label class="col-form-label">Description: </label>
+                        <input type="text" class="form-control" name="description">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Details: </label>
+                        <input type="text" class="form-control" name="details">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Add Vehicle Model</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- add vehicleModel modal end -->
+
+<!-- details vehicleModel modal start -->
+<div class="modal fade" id="detailsVehicleModelModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Vehicle Model Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-form-label">Id:</label>
+                        <input type="text" class="form-control" id="idDetails" name="id" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Description:</label>
+                        <input type="text" class="form-control" id="descriptionDetails" name="description" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Details:</label>
+                        <input type="text" class="form-control" id="detailsDetails" name="details" readonly>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- details vehicleModel modal start -->
+
+<!-- edit vehicleModel modal start -->
+<div class="modal fade" id="editVehicleModelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Update Vehicle Model</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/vehicles-models/update}" method="put">
+                    <div class="form-group">
+                        <label class="col-form-label">Id:</label>
+                        <input type="text" class="form-control" id="idEdit" name="id" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Description:</label>
+                        <input type="text" class="form-control" id="descriptionEdit" name="description">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Details:</label>
+                        <input type="text" class="form-control" id="detailsEdit" name="details">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- edit vehicleModel modal end -->
+
+<!-- delete vehicleModel modal start -->
+<div class="modal" id="deleteVehicleModelModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Please confirme delete vehicle model.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-primary" id="confirmDeleteButton">Yes, delete</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Canacle</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- delete vehicleModel modal end -->
+
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
