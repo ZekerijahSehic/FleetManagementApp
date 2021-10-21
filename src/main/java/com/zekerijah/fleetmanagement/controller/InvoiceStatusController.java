@@ -16,34 +16,34 @@ public class InvoiceStatusController {
     @Autowired
     private InvoiceStatusService invoiceStatusService;
 
-    @GetMapping("/invoices-statuses")
+    @GetMapping("/invoices-status")
     public String getInvoicesStatuses(Model model){
         List<InvoiceStatus> invoiceStatusList = invoiceStatusService.getInvoicesStatuses();
         model.addAttribute("invoicesStatuses", invoiceStatusList);
         return "invoice_status";
     }
 
-    @PostMapping("/invoices-statuses/add-new")
+    @PostMapping("/invoices-status/add-new")
     public String addInvoiceStatus(InvoiceStatus invoiceStatus){
         invoiceStatusService.saveInvoiceStatus(invoiceStatus);
-        return "redirect:/invoices-statuses";
+        return "redirect:/invoices-status";
     }
 
-    @RequestMapping("/invoices-statuses/find-by-id")
+    @RequestMapping("/invoices-status/find-by-id")
     @ResponseBody
     public Optional<InvoiceStatus> getInvoiceStatus(Integer id){
         return invoiceStatusService.getInvoiceStatusById(id);
     }
 
-    @RequestMapping(value = "/invoices-statuses/update", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/invoices-status/update", method = {RequestMethod.GET, RequestMethod.POST})
     public String updateInvoiceStatus(InvoiceStatus invoiceStatus){
         invoiceStatusService.saveInvoiceStatus(invoiceStatus);
-        return "redirect:/invoices-statuses";
+        return "redirect:/invoices-status";
     }
 
-    @RequestMapping(value = "/invoices-statuses/delete", method = {RequestMethod.GET, RequestMethod.DELETE})
+    @RequestMapping(value = "/invoices-status/delete", method = {RequestMethod.GET, RequestMethod.DELETE})
     public String deleteInvoiceStatus(Integer id){
         invoiceStatusService.deleteInvoiceStatusById(id);
-        return "redirect:/invoices-statuses";
+        return "redirect:/invoices-status";
     }
 }
