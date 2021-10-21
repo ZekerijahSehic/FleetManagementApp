@@ -33,7 +33,7 @@ public class CilentController {
         List<Region> regionList = regionService.getRegions();
 
         model.addAttribute("clients", clientList);
-        model.addAttribute("countries", clientList);
+        model.addAttribute("countries", countryList);
         model.addAttribute("regions", regionList);
         return "client";
     }
