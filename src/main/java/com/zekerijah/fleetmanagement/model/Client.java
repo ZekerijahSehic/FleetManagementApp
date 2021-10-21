@@ -33,9 +33,9 @@ public class Client {
     private Integer countryid;
 
     @ManyToOne
-    @JoinColumn(name="stateid", insertable=false, updatable=false)
-    private Region state;
-    private Integer stateid;
+    @JoinColumn(name="regiond", insertable=false, updatable=false)
+    private Region region;
+    private Integer regiond;
 
     private String details;
 }
