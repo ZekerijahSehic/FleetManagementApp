@@ -17,18 +17,21 @@ import java.util.Date;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Employee extends Person {
 
+    private String photo;
+    private String username;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date hireDate;
+
     @ManyToOne
     @JoinColumn(name="employeetypeid", insertable=false, updatable=false)
     private EmployeeType employeeType;
     private Integer employeetypeid;
-    private String photo;
-    private String username;
 
     @ManyToOne
     @JoinColumn(name="jobtitleid", insertable=false, updatable=false)
     private JobTitle jobTitle;
     private Integer jobtitleid;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date hireDate;
+
 }
