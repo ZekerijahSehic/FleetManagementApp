@@ -6,13 +6,14 @@ $('document').ready(function() {
         var href = $(this).attr('href');
 
         $.get(href, function (vehicleMovement) {
+            $('#idEdit').val(vehicleMovement.id)
             $('#ddlVehicleEdit').val(vehicleMovement.vehicleid);
-            $('#ddlLocation1Edit').val(vehicleMovement.location1id);
+            $('#ddlLocation1Edit').val(vehicleMovement.locationid1);
 
             var startDate = vehicleMovement.date1.substr(0,10);
             $('#date1Edit').val(startDate);
 
-            $('#ddlLocation2Edit').val(vehicleMovement.location2id);
+            $('#ddlLocation2Edit').val(vehicleMovement.locationid2);
 
             var endDate = vehicleMovement.date2.substr(0,10);
             $('#date2Edit').val(endDate);
@@ -33,13 +34,14 @@ $('document').ready(function() {
         event.preventDefault();
         var href = $(this).attr('href');
         $.get(href, function (vehicleMovement) {
+            $('#idDetails').val(vehicleMovement.id);
             $('#ddlVehicleDetails').val(vehicleMovement.vehicleid);
-            $('#ddlLocation1Details').val(vehicleMovement.location1id);
+            $('#ddlLocation1Details').val(vehicleMovement.locationid1);
 
             var startDate = vehicleMovement.date1.substr(0,10);
             $('#date1Details').val(startDate);
 
-            $('#ddlLocation2Details').val(vehicleMovement.location2id);
+            $('#ddlLocation2Details').val(vehicleMovement.locationid2);
 
             var endDate = vehicleMovement.date2.substr(0,10);
             $('#date2Details').val(endDate);
