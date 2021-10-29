@@ -10,7 +10,6 @@ $('document').ready(function() {
             $('#countryEdit').val(country.name);
             $('#capitalEdit').val(country.capital);
             $('#codeEdit').val(country.code);
-            $('#continentEdit').val(country.continent);
         });
         $('#editCountryModal').modal();
     })
@@ -29,7 +28,6 @@ $('document').ready(function() {
         $('#idDetails').val(country.id);
         $('#codeDetails').val(country.code);
         $('#capitalDetails').val(country.capital);
-        $('#continentDetails').val(country.continent);
         })
         $('#detailsCountryModal').modal();
     })
