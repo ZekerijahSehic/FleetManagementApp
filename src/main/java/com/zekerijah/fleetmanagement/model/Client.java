@@ -22,10 +22,9 @@ public class Client {
     private String name;
     private String address;
     private String city;
-    private String phone;
     private String mobile;
-    private String website;
     private String email;
+    private String remarks;
 
     @ManyToOne
     @JoinColumn(name="countryid", insertable=false, updatable=false)
@@ -37,5 +36,5 @@ public class Client {
     private Region region;
     private Integer regionid;
 
-    private String details;
+
 }
