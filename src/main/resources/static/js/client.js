@@ -10,11 +10,9 @@ $('document').ready(function() {
             $('#nameEdit').val(client.name);
             $('#addressEdit').val(client.address);
             $('#cityEdit').val(client.city);
-            $('#phoneEdit').val(client.phone);
             $('#mobileEdit').val(client.mobile);
-            $('#websiteEdit').val(client.website);
             $('#emailEdit').val(client.email);
-            $('#detailsEdit').val(client.details);
+            $('#remarksEdit').val(client.remarks);
         });
         $('#editClientModal').modal();
     })
@@ -36,11 +34,9 @@ $('document').ready(function() {
         $('#nameDetails').val(client.name);
         $('#addressDetails').val(client.address);
         $('#cityDetails').val(client.city);
-        $('#phoneDetails').val(client.phone);
         $('#mobileDetails').val(client.mobile);
-        $('#websiteDetails').val(client.website);
         $('#emailDetails').val(client.email);
-        $('#detailsDetails').val(client.details);
+        $('#remarksDetails').val(client.remarks);
         })
         $('#detailsClientModal').modal();
     })
