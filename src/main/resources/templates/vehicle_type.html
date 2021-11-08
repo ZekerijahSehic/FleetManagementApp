@@ -417,6 +417,11 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVehicleTypeModal" >New Vehicle Type</button>
             <!-- add vehicle type end -->
 
+            <form th:action="@{/vehicles-types}" method="get">
+                <input id="vehicleTypeSearch" type="text" name="keyword">
+                <button type="submit">Search</button>
+            </form>
+
             <!-- display vehicle type list start-->
             <table class="table">
                 <thead>
