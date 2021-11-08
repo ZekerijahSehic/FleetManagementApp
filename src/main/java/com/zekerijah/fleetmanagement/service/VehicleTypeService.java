@@ -29,4 +29,8 @@ public class VehicleTypeService {
     public void deleteVehicleTypeById(Integer id) {
         vehicleTypeRepository.deleteById(id);
     }
+
+    public List<VehicleType> findByKeyword(String keyword){
+        return vehicleTypeRepository.findByKeyword(keyword);
+    }
 }
