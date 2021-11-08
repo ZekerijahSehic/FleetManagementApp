@@ -17,9 +17,13 @@ public class VehicleTypeController {
     private VehicleTypeService vehicleTypeService;
 
     @GetMapping("/vehicles-types")
-    public String getVehiclesTypes(Model model){
-        List<VehicleType> vehicleTypeList = vehicleTypeService.getVehiclesTypes();
-        model.addAttribute("vehiclesTypes", vehicleTypeList);
+    public String getVehiclesTypes(Model model, String keyword){
+
+        if(keyword != null) {
+            model.addAttribute("vehiclesTypes", vehicleTypeService.findByKeyword(keyword));
+        } else {
+            model.addAttribute("vehiclesTypes", vehicleTypeService.getVehiclesTypes());
+        }
         return "vehicle_type";
     }
 
