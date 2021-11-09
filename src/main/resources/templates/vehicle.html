@@ -413,16 +413,355 @@
             <!-- page start-->
             <h1>List of Vehicles</h1>
 
+            <!-- add vehicle start -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVehicleModal" >New Vehicle</button>
+            <!-- add vehicle end -->
 
+            <!-- display vehicle list start-->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Acquisition</th>
+                    <td>Actions</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="vehicle:${vehicles}">
+                    <td th:text="${vehicle.id}"></td>
+                    <td th:text="${vehicle.name}"></td>
+                    <td th:text="${vehicle.description}"></td>
+                    <td th:text="${vehicle.acquisitionDate}"></td>
+                    <td>
+                        <div class="btn-group">
+                            <a th:href="@{/vehicles/find-by-id/(id=${vehicle.id})}" class="btn btn-primary" id="editButton"> <i class="icon_pencil-edit"> </i></a>
+                            <a th:href="@{/vehicles/find-by-id/(id=${vehicle.id})}" class="btn btn-success" id="detailsButton" > <i class="icon_document_alt"></i></a>
+                            <a th:href="@{/vehicles/delete/(id=${vehicle.id})}" class="btn btn-danger" id="deleteButton">  <i class="icon_close_alt2"> </i> </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- display vehicle list  end-->
 
             <!-- page end-->
         </section>
     </section>
     <!--main content end-->
 
-
 </section>
 <!-- container section end -->
+
+<!-- add vehicle modal start -->
+<div class="modal fade" id="addVehicleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >New Vehicle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/vehicles/add-new}" method="post">
+                    <div class="form-group">
+                        <label  class="col-form-label">Vehicle Type: </label>
+                        <select class="form-control" id="ddlVehicleTypeAdd" name="vehicletypeid">
+                            <option>-SELECT-</option>
+                            <option th:each="vehicleType : ${vehiclesTypes}"
+                                    th:value="${vehicleType.id}"
+                                    th:text="${vehicleType.description}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-form-label">Vehicle Make: </label>
+                        <select class="form-control" id="ddlVehicleMakeAdd" name="vehiclemakeid">
+                            <option>-SELECT-</option>
+                            <option th:each="vehicleMake : ${vehiclesMakes}"
+                                    th:value="${vehicleMake.id}"
+                                    th:text="${vehicleMake.description}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-form-label">Vehicle Model: </label>
+                        <select class="form-control" id="ddlVehicleModelAdd" name="vehiclemodelid">
+                            <option>-SELECT-</option>
+                            <option th:each="vehicleModel : ${vehiclesModels}"
+                                    th:value="${vehicleModel.id}"
+                                    th:text="${vehicleModel.description}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-form-label">Vehicle Status: </label>
+                        <select class="form-control" id="ddlVehicleStatusAdd" name="vehiclestatusid">
+                            <option>-SELECT-</option>
+                            <option th:each="vehicleStatus : ${vehiclesStatuses}"
+                                    th:value="${vehicleStatus.id}"
+                                    th:text="${vehicleStatus.description}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Acquisition Date:</label>
+                        <input type="date" class="form-control" name="acquisitionDate">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Remarks:</label>
+                        <input type="text" class="form-control" name="remarks">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Weight :</label>
+                        <input type="text" class="form-control" name="netWeight">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Vehicle Number:</label>
+                        <input type="text" class="form-control" name="vehicleNumber">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Description:</label>
+                        <input type="text" class="form-control" name="description">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Power:</label>
+                        <input type="text" class="form-control" name="power">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Fuel Capacity:</label>
+                        <input type="text" class="form-control" name="fuelCapacity">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Registration Date:</label>
+                        <input type="date" class="form-control" name="registrationDate">
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-form-label">Location: </label>
+                        <select class="form-control" id="ddlLocationAdd" name="locationid">
+                            <option>-SELECT-</option>
+                            <option th:each="location : ${locations}"
+                                    th:value="${location.id}"
+                                    th:text="${location.city}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-form-label">Employee: </label>
+                        <select class="form-control" id="ddlEmployeeAdd" name="employeeid">
+                            <option>-SELECT-</option>
+                            <option th:each="employee : ${employees}"
+                                    th:value="${employee.id}"
+                                    th:text="${employee.firstname} + ' ' + ${employee.lastname}">
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Add Vehicle</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- add vehicle modal end -->
+
+<!-- details vehicle modal start -->
+<div class="modal fade" id="detailsVehicleModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Vehicle Hire Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-form-label">Id:</label>
+                        <input type="text" class="form-control" id="idDetails" name="id" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlVehicleDetails" class="col-form-label">Vehicle: </label>
+                        <select class="form-control" id="ddlVehicleDetails" name="vehicleid" disabled>
+                            <option>-SELECT-</option>
+                            <option th:each="vehicle : ${vehicles}"
+                                    th:value="${vehicle.id}"
+                                    th:text="${vehicle.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlClientDetails" class="col-form-label">Supplier: </label>
+                        <select class="form-control" id="ddlClientDetails" name="clientid" disabled>
+                            <option>-SELECT-</option>
+                            <option th:each="client : ${clients}"
+                                    th:value="${client.id}"
+                                    th:text="${client.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlLocationDetails" class="col-form-label">Supplier: </label>
+                        <select class="form-control" id="ddlLocationDetails" name="locationid" disabled>
+                            <option>-SELECT-</option>
+                            <option th:each="location : ${locations}"
+                                    th:value="${location.id}"
+                                    th:text="${location.city}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Date out:</label>
+                        <input type="date" class="form-control" id="dateOutDetails" name="dateOut" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Time out:</label>
+                        <input type="text" class="form-control" id="timeOutDetails" name="timeOut" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Date in:</label>
+                        <input type="date" class="form-control" id="dateInDetails" name="dateIn" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Time in:</label>
+                        <input type="text" class="form-control" id="timeInDetails" name="timeIn" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Price:</label>
+                        <input type="text" class="form-control" id="priceDetails" name="price" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Remarks:</label>
+                        <input type="text" class="form-control" id="remarksDetails" name="remarks" readonly>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- details vehicle modal start -->
+
+<!-- edit vehicle modal start -->
+<div class="modal fade" id="editVehicleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Update Vehicle Hire</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/vehicles-hires/update}" method="put">
+                    <div class="form-group">
+                        <label class="col-form-label">Id:</label>
+                        <input type="text" class="form-control" id="idEdit" name="id" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlVehicleEdit" class="col-form-label">Vehicle: </label>
+                        <select class="form-control" id="ddlVehicleEdit" name="vehicleid">
+                            <option>-SELECT-</option>
+                            <option th:each="vehicle : ${vehicles}"
+                                    th:value="${vehicle.id}"
+                                    th:text="${vehicle.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlClientEdit" class="col-form-label">Client: </label>
+                        <select class="form-control" id="ddlClientEdit" name="clientid">
+                            <option>-SELECT-</option>
+                            <option th:each="client : ${clients}"
+                                    th:value="${client.id}"
+                                    th:text="${client.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlLocationEdit" class="col-form-label">Location: </label>
+                        <select class="form-control" id="ddlLocationEdit" name="locationid">
+                            <option>-SELECT-</option>
+                            <option th:each="location : ${locations}"
+                                    th:value="${location.id}"
+                                    th:text="${location.city}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Date out:</label>
+                        <input type="date" class="form-control" id="dateOutEdit" name="dateOut">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Time out:</label>
+                        <input type="text" class="form-control" id="timeOutEdit" name="timeOut">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Date in:</label>
+                        <input type="date" class="form-control" id="dateInEdit" name="dateIn">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Time in:</label>
+                        <input type="date" class="form-control" id="timeInEdit" name="timeIn">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Price:</label>
+                        <input type="text" class="form-control" id="priceEdit" name="price">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Remarks:</label>
+                        <input type="text" class="form-control" id="remarksEdit" name="remarks">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- edit vehicle modal end -->
+
+<!-- delete vehicle modal start -->
+<div class="modal" id="deleteVehicleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Please confirme delete vehicle.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-primary" id="confirmDeleteButton">Yes, delete</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Canacle</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- delete vehicle modal end -->
+
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
