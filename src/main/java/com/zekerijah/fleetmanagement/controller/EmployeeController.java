@@ -29,7 +29,7 @@ public class EmployeeController {
     private RegionService regionService;
 
     @GetMapping("/employees")
-    public String getEmployees(Model model){
+    public String getEmployees(Model model, String keyword){
         List<Employee> employeeList = employeeService.getEmployees();
         List<EmployeeType> employeeTypeList = employeeTypeService.getEmployeesTypes();
         List<JobTitle> jobTitleList = jobTitleService.getJobsTitles();
@@ -43,6 +43,18 @@ public class EmployeeController {
         model.addAttribute("regions", regionList);
 
         return "employee";
+    }
+
+    @GetMapping("/employees-filtered")
+    public String getEmployeesFiltered(Model model, String keyword){
+
+        model.addAttribute("employees", employeeService.getEmployees());
+        model.addAttribute("employeesTypes", employeeTypeService.getEmployeesTypes());
+        model.addAttribute("jobsTitles", jobTitleService.getJobsTitles());
+        model.addAttribute("countries", countryService.getCountries());
+        model.addAttribute("regions", regionService.getRegions());
+
+        return "employee_filtered";
     }
 
     @PostMapping("/employees/add-new")
