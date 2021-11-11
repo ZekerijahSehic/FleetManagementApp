@@ -23,7 +23,6 @@ public class Region {
     @ManyToOne
     @JoinColumn(name = "countryid", insertable = false, updatable = false)
     private Country country;
-
     private Integer countryid;
 
 }
