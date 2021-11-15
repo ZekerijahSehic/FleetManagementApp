@@ -13,8 +13,6 @@ $('document').ready(function() {
             $('#phoneEdit').val(supplier.phone);
             $('#mobileEdit').val(supplier.mobile);
             $('#websiteEdit').val(supplier.website);
-            $('#emailEdit').val(supplier.email);
-            $('#detailsEdit').val(supplier.details);
         });
         $('#editSupplierModal').modal();
     })
@@ -37,10 +35,8 @@ $('document').ready(function() {
         $('#addressDetails').val(supplier.address);
         $('#cityDetails').val(supplier.city);
         $('#phoneDetails').val(supplier.phone);
-        $('#mobileDetails').val(supplier.mobile);
         $('#websiteDetails').val(supplier.website);
         $('#emailDetails').val(supplier.email);
-        $('#detailsDetails').val(supplier.details);
         })
         $('#detailsSupplierModal').modal();
     })
